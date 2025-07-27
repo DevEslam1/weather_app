@@ -22,5 +22,3 @@ A beautiful weather application built with Flutter that displays current weather
 3. Run `flutter pub get` to install dependencies
 4. Run `flutter run` to start the app
 
-## Screenshots
-[Add screenshots here if available]
