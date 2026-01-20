@@ -1,29 +1,50 @@
-# Flutter Weather App
+# Weather App
 
-A beautiful weather application built with Flutter that displays current weather conditions for any city worldwide.
+A Flutter project to display weather information.
 
 ## Features
-- Real-time weather data from WeatherAPI.com
-- Dynamic UI that changes based on weather conditions
-- Search functionality for any city
-- Provider state management
-- Responsive design for all screen sizes
 
-## Technologies Used
-- Flutter framework
-- Dart programming language
-- WeatherAPI.com service
-- Provider package for state management
-- HTTP package for API calls
+- **Space-Themed Design:** Immerse yourself in a visually stunning space theme with a dynamic falling stars background and a consistent dark-mode aesthetic.
+- **Modern UI:** The app features a clean, modern design with a focus on readability and a great user experience.
+- **Poppins Font:** The app uses the beautiful Poppins font, created by the Indian Type Foundry.
+- **Theme-Aware UI:** The application fully supports light and dark modes, adapting its text, icons, and various UI elements to match your device's theme for an optimal viewing experience.
+- **Enhanced Weather Details:** Get comprehensive weather information at a glance, including:
+    - Maximum Temperature
+    - Minimum Temperature
+    - Humidity
+    - Wind Speed
+- **Intuitive Weather Icons:** Clear and descriptive icons are displayed alongside weather data points, making it easier to understand the forecast.
+- **Current Location Weather:**
+    - Automatically fetch weather data for your current GPS location.
+    - Includes a convenient "Get Current Location" button on the home screen.
 
 ## Getting Started
-1. Clone the repository
-2. Add your WeatherAPI.com API key in weather_service.dart
-3. Run `flutter pub get` to install dependencies
-4. Run `flutter run` to start the app
 
+This project is a starting point for a Flutter application.
 
-## Screenshots
-<img width="596" height="1142" alt="Screenshot 2025-07-28 at 8 48 06 PM" src="https://github.com/user-attachments/assets/81e3e02c-6218-4c18-b675-7f059fe954c4" />
-<img width="596" height="1142" alt="Screenshot 2025-07-28 at 8 48 13 PM" src="https://github.com/user-attachments/assets/3c9322e1-c872-40ef-a7f9-3fe524068b78" />
-<img width="552" height="1098" alt="Screenshot 2025-07-28 at 8 48 35 PM" src="https://github.com/user-attachments/assets/28e01a16-1f8e-4ed5-95a0-c77eb030d1ec" />
+A few resources to get you started if this is your first Flutter project:
+
+- [Lab: Write your first Flutter app](https://docs.flutter.dev/get-started/codelab)
+- [Cookbook: Useful Flutter samples](https://docs.flutter.dev/cookbook)
+
+For help getting started with Flutter development, view the
+[online documentation](https://docs.flutter.dev/), which offers tutorials,
+samples, guidance on mobile development, and a full API reference.
+
+## Setup for Location Services
+
+To enable the current location feature, you need to add specific permissions for Android and iOS.
+
+**For Android:**
+Add the following to `android/app/src/main/AndroidManifest.xml` within the `<manifest>` tag:
+```xml
+<uses-permission android:name="android.permission.ACCESS_FINE_LOCATION" />
+<uses-permission android:name="android.permission.ACCESS_COARSE_LOCATION" />
+```
+
+**For iOS:**
+Add the following to `ios/Runner/Info.plist` within the `<dict>` tag:
+```xml
+<key>NSLocationWhenInUseUsageDescription</key>
+<string>This app needs access to location when in use.</string>
+```
