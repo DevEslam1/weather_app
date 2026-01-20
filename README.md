@@ -1,5 +1,5 @@
 <p align="center">
-  <img width="1024" height="1024" alt="app_icon" src="https://github.com/user-attachments/assets/92c95fab-8ee7-4b8d-b191-05070b12be83" />
+  <img width="300" height="300" alt="app_icon" src="https://github.com/user-attachments/assets/92c95fab-8ee7-4b8d-b191-05070b12be83" />
 
 </p>
 <h1 align="center">Weather App</h1>
