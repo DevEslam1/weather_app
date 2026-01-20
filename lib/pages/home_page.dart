@@ -8,7 +8,7 @@ import 'package:geolocator/geolocator.dart';
 import 'package:weather_app/falling_stars.dart';
 
 class HomePage extends StatefulWidget {
-  const HomePage({Key? key}) : super(key: key);
+  const HomePage({super.key});
 
   @override
   State<HomePage> createState() => _HomePageState();
@@ -90,7 +90,6 @@ class _HomePageState extends State<HomePage> with TickerProviderStateMixin {
           Provider.of<WeatherProvider>(context, listen: false);
       await weatherProvider.getWeatherByLocation(
           latitude: position.latitude, longitude: position.longitude);
-      weatherProvider.cityName = 'Current Location';
     } catch (e) {
       if (!mounted) return;
       ScaffoldMessenger.of(context).showSnackBar(
@@ -108,7 +107,8 @@ class _HomePageState extends State<HomePage> with TickerProviderStateMixin {
 
   @override
   Widget build(BuildContext context) {
-    const textColor = Colors.white;
+    final theme = Theme.of(context);
+    final textColor = theme.colorScheme.onSurface;
 
     return Scaffold(
       extendBodyBehindAppBar: true,
@@ -116,7 +116,8 @@ class _HomePageState extends State<HomePage> with TickerProviderStateMixin {
         title: const Text(''),
         elevation: 0,
         backgroundColor: Colors.transparent,
-        foregroundColor: textColor,
+        foregroundColor:
+            theme.brightness == Brightness.light ? Colors.black : Colors.white,
         actions: [
           IconButton(
             onPressed: () {
@@ -141,9 +142,12 @@ class _HomePageState extends State<HomePage> with TickerProviderStateMixin {
           return Stack(
             children: [
               Container(
-                decoration: const BoxDecoration(
+                decoration: BoxDecoration(
                   gradient: LinearGradient(
-                    colors: [Color(0xFF0F1419), Color(0xFF1A2332)],
+                    colors: [
+                      theme.colorScheme.surface,
+                      theme.colorScheme.surface.withValues(alpha: 200 / 255)
+                    ],
                     begin: Alignment.topLeft,
                     end: Alignment.bottomRight,
                   ),
@@ -160,25 +164,21 @@ class _HomePageState extends State<HomePage> with TickerProviderStateMixin {
                             mainAxisAlignment: MainAxisAlignment.center,
                             children: [
                               Icon(Icons.cloud_off_outlined,
-                                  size: 80, color: textColor.withOpacity(0.5)),
+                                  size: 80,
+                                  color:
+                                      textColor.withValues(alpha: 128 / 255)),
                               const SizedBox(height: 24),
-                              const Text(
+                              Text(
                                 'No Weather Data',
-                                style: TextStyle(
-                                  fontFamily: 'Poppins',
-                                  fontSize: 24,
-                                  fontWeight: FontWeight.w600,
-                                  color: textColor,
-                                ),
+                                style: theme.textTheme.headlineSmall
+                                    ?.copyWith(color: textColor),
                               ),
                               const SizedBox(height: 8),
                               Text(
                                 'Search for a city to get started',
-                                style: TextStyle(
-                                  fontFamily: 'Poppins',
-                                  fontSize: 16,
-                                  color: textColor.withOpacity(0.8),
-                                ),
+                                style: theme.textTheme.bodyLarge?.copyWith(
+                                    color:
+                                        textColor.withValues(alpha: 204 / 255)),
                                 textAlign: TextAlign.center,
                               ),
                             ],
@@ -190,22 +190,17 @@ class _HomePageState extends State<HomePage> with TickerProviderStateMixin {
                             crossAxisAlignment: CrossAxisAlignment.start,
                             children: [
                               Text(
-                                weatherProvider.cityName ?? 'Unknown',
-                                style: const TextStyle(
-                                  fontFamily: 'Poppins',
-                                  fontSize: 32,
-                                  fontWeight: FontWeight.bold,
-                                  color: textColor,
-                                ),
+                                (weatherProvider.cityName ?? 'Unknown'),
+                                style: theme.textTheme.headlineMedium?.copyWith(
+                                    color: textColor,
+                                    fontWeight: FontWeight.bold),
                               ),
                               Text(
                                 '${weatherProvider.weatherData!.date.hour.toString().padLeft(2, '0')}:${weatherProvider.weatherData!.date.minute.toString().padLeft(2, '0')} - Today, ${weatherProvider.weatherData!.date.day}/${weatherProvider.weatherData!.date.month}',
-                                style: TextStyle(
-                                  fontFamily: 'Poppins',
-                                  fontSize: 14,
-                                  color: textColor.withOpacity(0.8),
-                                  fontWeight: FontWeight.w500,
-                                ),
+                                style: theme.textTheme.bodyMedium?.copyWith(
+                                    color:
+                                        textColor.withValues(alpha: 204 / 255),
+                                    fontWeight: FontWeight.w500),
                               ),
                               const Spacer(),
                               Center(
@@ -214,19 +209,17 @@ class _HomePageState extends State<HomePage> with TickerProviderStateMixin {
                                   crossAxisAlignment: CrossAxisAlignment.center,
                                   children: [
                                     Image.asset(
-                                        weatherProvider.weatherData!.getImage(),
-                                        width: 60,
-                                        height: 60,
-                                        color: Colors.white),
-                                    const SizedBox(width: 20),
+                                      weatherProvider.weatherData!.getImage(),
+                                      width: 60,
+                                      height: 60,
+                                    ),
+                                    const SizedBox(width: 10),
                                     Text(
                                       '${weatherProvider.weatherData!.temp.toInt()}°',
-                                      style: const TextStyle(
-                                        fontFamily: 'Poppins',
-                                        fontSize: 90,
-                                        fontWeight: FontWeight.w300,
-                                        color: textColor,
-                                      ),
+                                      style: theme.textTheme.displayLarge
+                                          ?.copyWith(
+                                              color: textColor,
+                                              fontWeight: FontWeight.w600),
                                     ),
                                   ],
                                 ),
@@ -234,19 +227,19 @@ class _HomePageState extends State<HomePage> with TickerProviderStateMixin {
                               Center(
                                 child: Text(
                                   '${weatherProvider.weatherData!.weatherStateName} / Feels like ${weatherProvider.weatherData!.feelsLike.toInt()}°',
-                                  style: TextStyle(
-                                    fontFamily: 'Poppins',
-                                    fontSize: 16,
-                                    color: textColor.withOpacity(0.8),
-                                    fontWeight: FontWeight.w500,
-                                  ),
+                                  style: theme.textTheme.bodyLarge?.copyWith(
+                                      color: textColor.withValues(
+                                          alpha: 204 / 255),
+                                      fontWeight: FontWeight.w500),
                                 ),
                               ),
                               const Spacer(),
-                              _buildDetailsCard(weatherProvider.weatherData!),
+                              _buildDetailsCard(
+                                  weatherProvider.weatherData!, theme),
                               const SizedBox(height: 20),
                               _buildHourlyForecast(
-                                  weatherProvider.weatherData!.hourlyForecast),
+                                  weatherProvider.weatherData!.hourlyForecast,
+                                  theme),
                             ],
                           ),
                         ),
@@ -259,9 +252,9 @@ class _HomePageState extends State<HomePage> with TickerProviderStateMixin {
     );
   }
 
-  Widget _buildDetailsCard(WeatherModel weatherData) {
-    final cardColor = Colors.white.withOpacity(0.1);
-    const textColor = Colors.white;
+  Widget _buildDetailsCard(WeatherModel weatherData, ThemeData theme) {
+    final cardColor = theme.colorScheme.surface.withValues(alpha: 50 / 255);
+    final textColor = theme.colorScheme.onSurface;
 
     return ClipRRect(
       borderRadius: BorderRadius.circular(20),
@@ -280,11 +273,20 @@ class _HomePageState extends State<HomePage> with TickerProviderStateMixin {
                   'Wind',
                   '${weatherData.windSpeedKph.toInt()} km/h',
                   textColor,
-                  Icons.air),
-              _buildWeatherDetail('Humidity',
-                  '${weatherData.humidity.toInt()}%', textColor, Icons.water_drop),
-              _buildWeatherDetail('Pressure',
-                  '${weatherData.pressure.toInt()} hPa', textColor, Icons.speed),
+                  Icons.air,
+                  theme),
+              _buildWeatherDetail(
+                  'Humidity',
+                  '${weatherData.humidity.toInt()}%',
+                  textColor,
+                  Icons.water_drop,
+                  theme),
+              _buildWeatherDetail(
+                  'Pressure',
+                  '${weatherData.pressure.toInt()} hPa',
+                  textColor,
+                  Icons.speed,
+                  theme),
             ],
           ),
         ),
@@ -292,42 +294,38 @@ class _HomePageState extends State<HomePage> with TickerProviderStateMixin {
     );
   }
 
-  Widget _buildWeatherDetail(
-      String title, String value, Color textColor, IconData icon) {
+  Widget _buildWeatherDetail(String title, String value, Color textColor,
+      IconData icon, ThemeData theme) {
     return Column(
       children: [
         Icon(
           icon,
-          color: Colors.white,
+          color:
+              theme.brightness == Brightness.dark ? Colors.white : Colors.black,
         ),
         const SizedBox(
           height: 5,
         ),
         Text(
           title,
-          style: TextStyle(
-              fontFamily: 'Poppins',
-              fontSize: 12,
-              color: textColor.withOpacity(0.8),
+          style: theme.textTheme.bodySmall?.copyWith(
+              color: textColor.withValues(alpha: 204 / 255),
               fontWeight: FontWeight.w500),
         ),
         const SizedBox(height: 4),
         Text(
           value,
-          style: TextStyle(
-            fontFamily: 'Poppins',
-            fontSize: 16,
-            fontWeight: FontWeight.w600,
-            color: textColor,
-          ),
+          style: theme.textTheme.bodyLarge
+              ?.copyWith(color: textColor, fontWeight: FontWeight.w600),
         ),
       ],
     );
   }
 
-  Widget _buildHourlyForecast(List<HourlyWeather> hourlyForecast) {
-    final cardColor = Colors.white.withOpacity(0.1);
-    const textColor = Colors.white;
+  Widget _buildHourlyForecast(
+      List<HourlyWeather> hourlyForecast, ThemeData theme) {
+    final cardColor = theme.colorScheme.surface.withValues(alpha: 50 / 255);
+    final textColor = theme.colorScheme.onSurface;
 
     return ClipRRect(
       borderRadius: BorderRadius.circular(20),
@@ -342,14 +340,10 @@ class _HomePageState extends State<HomePage> with TickerProviderStateMixin {
           child: Column(
             crossAxisAlignment: CrossAxisAlignment.start,
             children: [
-              const Text(
+              Text(
                 'Details',
-                style: TextStyle(
-                  fontFamily: 'Poppins',
-                  fontSize: 14,
-                  fontWeight: FontWeight.bold,
-                  color: textColor,
-                ),
+                style: theme.textTheme.titleMedium
+                    ?.copyWith(color: textColor, fontWeight: FontWeight.bold),
               ),
               const SizedBox(height: 12),
               SizedBox(
@@ -368,6 +362,7 @@ class _HomePageState extends State<HomePage> with TickerProviderStateMixin {
                         iconUrl: hourly.weatherIcon,
                         temp: hourly.tempC.toInt().toString(),
                         textColor: textColor,
+                        theme: theme,
                       ),
                     );
                   },
@@ -384,29 +379,37 @@ class _HomePageState extends State<HomePage> with TickerProviderStateMixin {
       {required String time,
       required String iconUrl,
       required String temp,
-      required Color textColor}) {
+      required Color textColor,
+      required ThemeData theme}) {
     return Column(
       mainAxisAlignment: MainAxisAlignment.center,
       children: [
         Text(
           time,
-          style: TextStyle(
-              fontFamily: 'Poppins',
-              fontSize: 12,
-              color: textColor.withOpacity(0.8),
+          style: theme.textTheme.bodySmall?.copyWith(
+              color: textColor.withValues(alpha: 204 / 255),
               fontWeight: FontWeight.w500),
         ),
         const SizedBox(height: 8),
-        Image.network('https:$iconUrl', width: 32, height: 32),
+        Image.network(
+          'https:$iconUrl',
+          width: 40,
+          height: 40,
+          errorBuilder: (context, error, stackTrace) {
+            return Icon(
+              Icons.broken_image,
+              size: 40,
+              color: theme.brightness == Brightness.dark
+                  ? Colors.white
+                  : Colors.black,
+            );
+          },
+        ),
         const SizedBox(height: 8),
         Text(
           '$temp°',
-          style: TextStyle(
-            fontFamily: 'Poppins',
-            fontSize: 16,
-            fontWeight: FontWeight.w600,
-            color: textColor,
-          ),
+          style: theme.textTheme.bodyLarge
+              ?.copyWith(color: textColor, fontWeight: FontWeight.w600),
         ),
       ],
     );

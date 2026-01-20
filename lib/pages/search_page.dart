@@ -91,7 +91,6 @@ class _SearchPageState extends State<SearchPage> with TickerProviderStateMixin {
           Provider.of<WeatherProvider>(context, listen: false);
       await weatherProvider.getWeatherByLocation(
           latitude: position.latitude, longitude: position.longitude);
-      weatherProvider.cityName = 'Current Location';
       if (!mounted) return;
       Navigator.pop(context);
     } catch (e) {
@@ -154,11 +153,11 @@ class _SearchPageState extends State<SearchPage> with TickerProviderStateMixin {
                           ),
                           decoration: InputDecoration(
                             filled: true,
-                            fillColor: Colors.white.withOpacity(0.15),
+                            fillColor: Colors.white.withValues(alpha: 38 / 255),
                             hintText: 'Enter city name',
                             hintStyle: TextStyle(
                               fontFamily: 'Poppins',
-                              color: Colors.white.withOpacity(0.6),
+                              color: Colors.white.withValues(alpha: 153 / 255),
                             ),
                             border: OutlineInputBorder(
                               borderRadius: BorderRadius.circular(20),
@@ -169,15 +168,24 @@ class _SearchPageState extends State<SearchPage> with TickerProviderStateMixin {
                               color: Colors.white,
                             ),
                           ),
-                          onSubmitted: (String cityName) {
+                          onSubmitted: (String cityName) async {
                             if (cityName.isNotEmpty) {
                               final weatherProvider =
                                   Provider.of<WeatherProvider>(context,
                                       listen: false);
-                              weatherProvider.getWeatherData(
-                                  cityName: cityName);
-                              weatherProvider.cityName = cityName;
-                              Navigator.pop(context);
+                              try {
+                                await weatherProvider.getWeatherData(
+                                    cityName: cityName);
+                                if (!mounted) return;
+                                Navigator.pop(context);
+                              } catch (e) {
+                                if (!mounted) return;
+                                ScaffoldMessenger.of(context).showSnackBar(
+                                  const SnackBar(
+                                      content: Text(
+                                          'Failed to get weather. Please check the city name.')),
+                                );
+                              }
                             }
                           },
                         ),
@@ -191,7 +199,8 @@ class _SearchPageState extends State<SearchPage> with TickerProviderStateMixin {
                       icon: const Icon(Icons.my_location),
                       label: const Text('Use Current Location'),
                       style: FilledButton.styleFrom(
-                        backgroundColor: Colors.white.withOpacity(0.2),
+                        backgroundColor:
+                            Colors.white.withValues(alpha: 51 / 255),
                         foregroundColor: Colors.white,
                         padding: const EdgeInsets.symmetric(
                             horizontal: 24, vertical: 12),

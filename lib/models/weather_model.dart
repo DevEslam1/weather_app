@@ -1,6 +1,7 @@
 import 'package:flutter/material.dart';
 
 class WeatherModel {
+  String name;
   DateTime date;
   double temp;
   double maxTemp;
@@ -11,10 +12,12 @@ class WeatherModel {
   double visibilityKm;
   double pressure;
   String weatherStateName;
+  String icon;
   int chanceOfRain;
   List<HourlyWeather> hourlyForecast;
 
   WeatherModel({
+    required this.name,
     required this.date,
     required this.temp,
     required this.maxTemp,
@@ -25,11 +28,13 @@ class WeatherModel {
     required this.visibilityKm,
     required this.pressure,
     required this.weatherStateName,
+    required this.icon,
     required this.chanceOfRain,
     required this.hourlyForecast,
   });
 
   factory WeatherModel.fromJson(dynamic data) {
+    var locationData = data['location'];
     var jsonData = data['forecast']['forecastday'][0]['day'];
     var currentData = data['current'];
     var forecastday = data['forecast']['forecastday'][0];
@@ -39,6 +44,7 @@ class WeatherModel {
     }
 
     return WeatherModel(
+      name: locationData['name'],
       date: DateTime.parse(currentData['last_updated']),
       temp: jsonData['avgtemp_c'],
       maxTemp: jsonData['maxtemp_c'],
@@ -48,7 +54,8 @@ class WeatherModel {
       windSpeedKph: currentData['wind_kph'],
       visibilityKm: currentData['vis_km'],
       pressure: currentData['pressure_mb'],
-      weatherStateName: jsonData['condition']['text'],
+      weatherStateName: currentData['condition']['text'],
+      icon: currentData['condition']['icon'],
       chanceOfRain: jsonData['daily_chance_of_rain'],
       hourlyForecast: hourlyData,
     );
@@ -126,11 +133,13 @@ class HourlyWeather {
   DateTime time;
   double tempC;
   String weatherIcon;
+  String weatherCondition;
 
   HourlyWeather({
     required this.time,
     required this.tempC,
     required this.weatherIcon,
+    required this.weatherCondition,
   });
 
   factory HourlyWeather.fromJson(Map<String, dynamic> json) {
@@ -138,9 +147,38 @@ class HourlyWeather {
       time: DateTime.parse(json['time']),
       tempC: json['temp_c'],
       weatherIcon: json['condition']['icon'],
+      weatherCondition: json['condition']['text'],
     );
   }
+
+  String getImage() {
+    if (weatherCondition == 'Sunny' ||
+        weatherCondition == 'Clear' ||
+        weatherCondition == 'partly cloudy') {
+      return 'assets/images/clear.png';
+    } else if (weatherCondition == 'Blizzard' ||
+        weatherCondition == 'Patchy snow possible' ||
+        weatherCondition == 'Patchy sleet possible' ||
+        weatherCondition == 'Patchy freezing drizzle possible' ||
+        weatherCondition == 'Blowing snow') {
+      return 'assets/images/snow.png';
+    } else if (weatherCondition == 'Freezing fog' ||
+        weatherCondition == 'Fog' ||
+        weatherCondition == 'Heavy Cloud' ||
+        weatherCondition == 'Mist') {
+      return 'assets/images/cloudy.png';
+    } else if (weatherCondition == 'Patchy rain possible' ||
+        weatherCondition == 'Heavy Rain' ||
+        weatherCondition == 'Showers') {
+      return 'assets/images/rainy.png';
+    } else if (weatherCondition == 'Thundery outbreaks possible' ||
+        weatherCondition == 'Moderate or heavy snow with thunder' ||
+        weatherCondition == 'Patchy light snow with thunder' ||
+        weatherCondition == 'Moderate or heavy rain with thunder' ||
+        weatherCondition == 'Patchy light rain with thunder') {
+      return 'assets/images/thunderstorm.png';
+    } else {
+      return 'assets/images/clear.png';
+    }
+  }
 }
-
-
-

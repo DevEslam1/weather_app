@@ -48,7 +48,8 @@ class _FallingStarsState extends State<FallingStars>
         y: _random.nextDouble() * screenHeight,
         radius: _random.nextDouble() * 1.5 + 0.5,
         speed: _random.nextDouble() * 0.5 + 0.2,
-        color: Colors.white.withOpacity(_random.nextDouble() * 0.8 + 0.2),
+        color: Colors.white
+            .withValues(alpha: (_random.nextDouble() * 204 + 51) / 255),
       );
     });
   }

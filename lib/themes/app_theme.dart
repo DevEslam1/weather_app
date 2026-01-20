@@ -37,12 +37,31 @@ class AppTheme {
   static TextTheme _textTheme(Brightness brightness) {
     final color = brightness == Brightness.dark ? Colors.white : Colors.black87;
     return TextTheme(
-      displayLarge: TextStyle(fontFamily: 'Poppins', fontWeight: FontWeight.bold, fontSize: 32, color: color),
-      displayMedium: TextStyle(fontFamily: 'Poppins', fontWeight: FontWeight.w600, fontSize: 28, color: color),
-      headlineSmall: TextStyle(fontFamily: 'Poppins', fontWeight: FontWeight.w600, fontSize: 20, color: color),
-      titleMedium: TextStyle(fontFamily: 'Poppins', fontWeight: FontWeight.w500, fontSize: 16, color: color),
+      displayLarge: TextStyle(
+          fontFamily: 'Poppins',
+          fontWeight: FontWeight.bold,
+          fontSize: 32,
+          color: color),
+      displayMedium: TextStyle(
+          fontFamily: 'Poppins',
+          fontWeight: FontWeight.w600,
+          fontSize: 28,
+          color: color),
+      headlineSmall: TextStyle(
+          fontFamily: 'Poppins',
+          fontWeight: FontWeight.w600,
+          fontSize: 20,
+          color: color),
+      titleMedium: TextStyle(
+          fontFamily: 'Poppins',
+          fontWeight: FontWeight.w500,
+          fontSize: 16,
+          color: color),
       bodyLarge: TextStyle(fontFamily: 'Poppins', fontSize: 16, color: color),
-      bodyMedium: TextStyle(fontFamily: 'Poppins', fontSize: 14, color: color.withOpacity(0.8)),
+      bodyMedium: TextStyle(
+          fontFamily: 'Poppins',
+          fontSize: 14,
+          color: color.withValues(alpha: 204 / 255)),
     );
   }
 }
