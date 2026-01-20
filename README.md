@@ -12,14 +12,22 @@ A Flutter project to display weather information, designed with a sleek, modern 
 - **✒️ Poppins Font:** The app uses the beautiful Poppins font, created by the Indian Type Foundry.
 - **🎨 Theme-Aware UI:** The application fully supports light and dark modes, adapting its text, icons, and various UI elements to match your device's theme for an optimal viewing experience.
 - **🌦️ Enhanced Weather Details:** Get comprehensive weather information at a glance, including:
+    - 🌡️ **Current Temperature** with local asset weather icon
     - 🌡️ **Maximum Temperature**
     - 🌡️ **Minimum Temperature**
-    -💧 **Humidity**
+    - 💧 **Humidity**
     - 💨 **Wind Speed**
-- **🔔 Intuitive Weather Icons:** Clear and descriptive icons are displayed alongside weather data points, making it easier to understand the forecast.
+    - 🔌 **Pressure**
+    - ❄️ **Chance of Rain**
+- **⏰ Hourly Forecast:** View real-time hourly forecast with live API weather icons for the next 8 hours.
+- **🎯 Smart Weather Icons:** 
+    - Main display uses local asset icons based on weather conditions
+    - Hourly forecast cards display live API weather icons
+- **🔍 City Search:** Search for weather information by city name with autocomplete support.
 - **📍 Current Location Weather:**
     - Automatically fetch weather data for your current GPS location.
-    - Includes a convenient "Get Current Location" button on the home screen.
+    - Includes a convenient "Get Current Location" button on the home screen and search page.
+- **🌐 Real-time Data:** Powered by WeatherAPI.com for accurate, up-to-date weather information.
 
 ## Screenshots
 <p align="center">
@@ -32,9 +40,11 @@ A Flutter project to display weather information, designed with a sleek, modern 
 
 - **Flutter:** The UI toolkit for building natively compiled applications for mobile, web, and desktop from a single codebase.
 - **Dart:** The programming language used for building Flutter apps.
-- **Provider:** For state management.
+- **Provider:** For state management and reactive UI updates.
 - **Geolocator:** To get the current location of the device.
 - **Google Fonts:** To use the Poppins font.
+- **HTTP:** For making API requests to WeatherAPI.com.
+- **WeatherAPI.com:** Real-time weather data API with comprehensive weather conditions and icons.
 
 <details>
 <summary>🚀 Getting Started</summary>
