@@ -18,6 +18,8 @@ A Flutter project to display weather information.
     - Automatically fetch weather data for your current GPS location.
     - Includes a convenient "Get Current Location" button on the home screen.
 
+## Screenshots
+
 ## Getting Started
 
 This project is a starting point for a Flutter application.
