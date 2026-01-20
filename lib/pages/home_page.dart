@@ -276,12 +276,15 @@ class _HomePageState extends State<HomePage> with TickerProviderStateMixin {
           child: Row(
             mainAxisAlignment: MainAxisAlignment.spaceAround,
             children: [
-              _buildWeatherDetail('Wind',
-                  '${weatherData.windSpeedKph.toInt()} km/h', textColor),
               _buildWeatherDetail(
-                  'Humidity', '${weatherData.humidity.toInt()}%', textColor),
-              _buildWeatherDetail(
-                  'Pressure', '${weatherData.pressure.toInt()} hPa', textColor),
+                  'Wind',
+                  '${weatherData.windSpeedKph.toInt()} km/h',
+                  textColor,
+                  Icons.air),
+              _buildWeatherDetail('Humidity',
+                  '${weatherData.humidity.toInt()}%', textColor, Icons.water_drop),
+              _buildWeatherDetail('Pressure',
+                  '${weatherData.pressure.toInt()} hPa', textColor, Icons.speed),
             ],
           ),
         ),
@@ -289,9 +292,17 @@ class _HomePageState extends State<HomePage> with TickerProviderStateMixin {
     );
   }
 
-  Widget _buildWeatherDetail(String title, String value, Color textColor) {
+  Widget _buildWeatherDetail(
+      String title, String value, Color textColor, IconData icon) {
     return Column(
       children: [
+        Icon(
+          icon,
+          color: Colors.white,
+        ),
+        const SizedBox(
+          height: 5,
+        ),
         Text(
           title,
           style: TextStyle(
