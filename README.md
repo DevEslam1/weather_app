@@ -19,9 +19,11 @@ A Flutter project to display weather information.
     - Includes a convenient "Get Current Location" button on the home screen.
 
 ## Screenshots
-<img width="1344" height="2992" alt="Screenshot_1768928308" src="https://github.com/user-attachments/assets/38f559c3-6c96-421e-a053-c8ee533cc105" />
-<img width="1344" height="2992" alt="Screenshot_1768928303" src="https://github.com/user-attachments/assets/3fde0c51-7033-4703-b095-e544e2f2bf41" />
-<img width="1344" height="2992" alt="Screenshot_1768928317" src="https://github.com/user-attachments/assets/3c141c4a-4e8c-4e16-9706-eb0c380736e9" />
+<p align="center">
+  <img src="https://github.com/user-attachments/assets/38f559c3-6c96-421e-a053-c8ee533cc105" width="200" />
+  <img src="https://github.com/user-attachments/assets/3fde0c51-7033-4703-b095-e544e2f2bf41" width="200" />
+  <img src="https://github.com/user-attachments/assets/3c141c4a-4e8c-4e16-9706-eb0c380736e9" width="200" />
+</p>
 
 ## Getting Started
 
