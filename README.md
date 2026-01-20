@@ -20,8 +20,8 @@ A Flutter project to display weather information.
 
 ## Screenshots
 <p align="center">
-  <img src="https://github.com/user-attachments/assets/38f559c3-6c96-421e-a053-c8ee533cc105" width="200" />
   <img src="https://github.com/user-attachments/assets/3fde0c51-7033-4703-b095-e544e2f2bf41" width="200" />
+  <img src="https://github.com/user-attachments/assets/38f559c3-6c96-421e-a053-c8ee533cc105" width="200" />
   <img src="https://github.com/user-attachments/assets/3c141c4a-4e8c-4e16-9706-eb0c380736e9" width="200" />
 </p>
 
