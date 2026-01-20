@@ -1,5 +1,6 @@
 <p align="center">
-  <img src="https://github.com/user-attachments/assets/38f559c3-6c96-421e-a053-c8ee533cc105" width="200" />
+  <img width="1024" height="1024" alt="app_icon" src="https://github.com/user-attachments/assets/92c95fab-8ee7-4b8d-b191-05070b12be83" />
+
 </p>
 <h1 align="center">Weather App</h1>
 
@@ -31,9 +32,10 @@ A Flutter project to display weather information, designed with a sleek, modern 
 
 ## Screenshots
 <p align="center">
-  <img src="https://github.com/user-attachments/assets/3fde0c51-7033-4703-b095-e544e2f2bf41" width="200" />
-  <img src="https://github.com/user-attachments/assets/38f559c3-6c96-421e-a053-c8ee533cc105" width="200" />
-  <img src="https://github.com/user-attachments/assets/3c141c4a-4e8c-4e16-9706-eb0c380736e9" width="200" />
+  <img width="200"  alt="Screenshot_1768929710" src="https://github.com/user-attachments/assets/764c89b0-418f-48d6-ade3-bd949da6ed44" />
+<img width="200" alt="Screenshot_1768929716" src="https://github.com/user-attachments/assets/6258fe0c-6ae0-4294-a499-cf8722ff618e" />
+<img width="200" alt="Screenshot_1768930389" src="https://github.com/user-attachments/assets/0a9dd4e2-af71-465d-aa28-973a7abe4856" />
+<img width="200" alt="Screenshot_1768930372" src="https://github.com/user-attachments/assets/9090bedc-ee27-47ae-aed6-5f964f9496f8" />
 </p>
 
 ## 🛠️ Tech Stack
